@@ -1,6 +1,19 @@
 import praw
 import pandas as pd
 import datetime
+import pyodbc
+
+#will not work from linux OS?
+server = 'tcp:azserver-1.database.windows.net' 
+database = 'db_1'
+username = 'misha'
+password = 'U$eeh3XR'
+driver= '{SQL Server}' #ODBC Driver 18 for 
+
+cnxn = pyodbc.connect('DRIVER='+driver+';PORT=1433;SERVER='+server+';PORT=1443;DATABASE='+database+';UID='+username+';PWD='+ password)
+cursor = cnxn.cursor()
+print('Okay')
+
 
 user_agent = "Searchbot_01"
 reddit = praw.Reddit(username="Searchbot_01",

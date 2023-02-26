@@ -60,13 +60,21 @@ df['Title'] = titles
 df['Id'] = ids
 df['Upvotes'] = scores #upvotes
 df['Time_Created'] = time_created
-df['test_column'] = author
+df['Author'] = author
 df['Upvote_Ratio'] = ratio
 # try:
 #     df['Comments'] = comments
 # except:
 #     df['Comments'] = df.fillna(0)
 
+
+
+
 print(df.shape)
 df.head(10)
 print(df)
+
+for index, row in df.iterrows():
+     cursor.execute("INSERT INTO db_1.watchexchange_test (Title, ID, Upvotes,Time_created, Author, Upvote_Ratio)) values(?,?,?,?,?,?)", row.Title, row.ID, row.Upvotes,row.Time_created, row.Author, row.Upvote_ratio)
+cnxn.commit()
+cursor.close()
